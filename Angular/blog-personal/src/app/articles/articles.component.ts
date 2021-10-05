@@ -9,17 +9,17 @@ import { Subscription } from 'rxjs';
 })
 export class ArticlesComponent implements OnInit, OnDestroy {
   posts: ScullyRoute[] = [];
-  private routesub: Subscription | undefined;
+  private routeSub: Subscription | undefined;
   constructor(private scullysService: ScullyRoutesService) { }
 
   ngOnInit(): void {
-    this.routesub=
+    this.routeSub=
     this.scullysService.available$.subscribe((posts) => {
       this.posts = posts.filter((post) => post.title);
     });
   }
 
   ngOnDestroy(): void{
-    this.routesub?.unsubscribe();
+    this.routeSub?.unsubscribe();
   }
 }
